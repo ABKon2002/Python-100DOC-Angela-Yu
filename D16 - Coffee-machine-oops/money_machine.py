@@ -31,7 +31,7 @@ class MoneyMachine:
             print("We dont serve that currently..")
             return False
         self.process_coins(cost)
-        if self.money_received >= cost:
+        if self.money_received > cost:
             change = round(self.money_received - cost, 2)
             print(f"Here is {self.CURRENCY}{change} in change.")
             self.profit += cost

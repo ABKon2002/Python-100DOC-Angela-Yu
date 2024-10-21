@@ -19,8 +19,7 @@ while machine_up:
         continue
     drink = menu.get_item(order)
     if drink == -1:
-        print("We don't serve that currently..")
-        continue
-    elif not machine.is_resource_sufficient(drink) or not bank.make_payment(drink.cost):
+        print("Sorry, we don't serve that yet :(")
+    elif machine.is_resource_sufficient(drink) and bank.make_payment(drink.cost):
         machine.make_coffee(drink)
     print("Please make way for the next customer..")
