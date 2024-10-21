@@ -60,7 +60,8 @@
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
 from random import choice
-from replit import clear
+import os
+from art import logo
 
 def is_blackjack(hands):
     if sum(hands) == 21:
@@ -100,8 +101,7 @@ def fill_computer_hands(computer_hands):
 first_ip = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 
 while first_ip == 'y':
-    clear()
-    from art import logo
+    os.system('cls')
     print(logo)
 
     deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]

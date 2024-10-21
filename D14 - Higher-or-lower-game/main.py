@@ -1,6 +1,6 @@
 from random import randint
 from time import sleep
-from replit import clear
+import os
 from game_data import data, data1
 from art import logo, vs
 
@@ -23,7 +23,7 @@ def check_answer(guess, follower1, follower2):
     elif guess == 'lower':
         return follower1 <= follower2
 
-def currHighScores(path = "user_data.txt"):
+def currHighScores(path = 'D14 - Higher-or-lower-game\\user_data.txt'):
     high_scores = []
     with open(path, 'r') as f:
         data = f.readlines()
@@ -137,7 +137,7 @@ def game(high_score = 0):
 
         if check_answer(guess, follower1, follower2):
             curr_score += 1
-            clear()
+            os.system('cls')
             print(logo)
             print(f"Current score: {curr_score} \t\t\t High Score: {high_score}")
             print()
@@ -163,7 +163,7 @@ name = register(hscores)
 for i in range(3, 0, -1):
     print(f"Play in {i} seconds...")
     sleep(1)
-clear()
+os.system('cls')
 
 while play_game:
     score = game(hs)
@@ -171,7 +171,7 @@ while play_game:
         hs = score
     play_game = input("Do you want to play again? (y/n): ")
     play_game = play_game.lower() == 'y'
-    clear()
+    os.system('cls')
 
 names = [data['User_Name'] for data in hscores]
 if name in names:

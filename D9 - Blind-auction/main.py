@@ -1,5 +1,6 @@
-from replit import clear
 from art import logo
+import os
+import time
 
 #HINT: You can call clear() to clear the output in the console.
 
@@ -18,10 +19,16 @@ def find_highest_bidder(bids):
         if bid_amount > highest_bid:
             highest_bid = bid_amount
             winner = bidder
+    os.system('cls')
+    print("Displaying the results of the auction...")
+    time.sleep(3)
     print(f"The winner is {winner} with a bid of ${highest_bid}")
 
 bidding_finished = False
+time.sleep(5)
+
 while not bidding_finished:
+    os.system('cls')
     name = input("What is your name?: ")
     bid = int(input("What is your bid?: $"))
     add_bid(name, bid)
@@ -30,4 +37,5 @@ while not bidding_finished:
         bidding_finished = True
         find_highest_bidder(bids)
     elif more_bidders == "yes":
-        clear()
+        os.system('cls')
+        pass

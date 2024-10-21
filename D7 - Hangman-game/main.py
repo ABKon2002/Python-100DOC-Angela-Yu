@@ -4,7 +4,7 @@ import word_data
 from asciiArt import stages, logo
 import rules
 from time import sleep
-from replit import clear
+import os
 
 # Intro banner
 print(logo)
@@ -59,7 +59,7 @@ while '_' in displayList and lives > 0:
         continue
     guesses.append(guess)
 
-    clear()
+    os.system('cls')
 
     if guess in wordList:
         for i in range(len(wordList)):
