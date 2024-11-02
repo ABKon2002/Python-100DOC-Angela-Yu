@@ -4,6 +4,7 @@ import random
 is_race_on = False
 screen = Screen()
 screen.setup(width = 500, height = 400)
+screen.bgcolor("light blue")
 user_bet = screen.textinput(title = "Make your bet", prompt = "Which turtle will win the race? Enter a color in the rainbow: ").lower()
 colors = ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
 all_turtles = []
@@ -29,8 +30,10 @@ while is_race_on:
             winning_color = turtle.pencolor()
             if winning_color == user_bet:
                 print(f"You've won! The {winning_color} turtle is the winner!")
+                exit()
             else:
                 print(f"You've lost! The {winning_color} turtle is the winner!")
+                exit()
         random_distance = random.randint(0, 20)
         turtle.forward(random_distance)
 

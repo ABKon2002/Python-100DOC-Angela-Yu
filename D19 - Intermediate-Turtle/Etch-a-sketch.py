@@ -25,6 +25,7 @@ tim.color("black")
 tim.pencolor("blue")
 
 screen = Screen()
+screen.bgcolor('light yellow')
 screen.listen()
 screen.onkey(key="w", fun=move_forward)
 screen.onkey(key="s", fun=move_backward)
