@@ -9,7 +9,7 @@ def setup_screen():
     screen.setup(width = SCREEN_WIDTH, height = SCREEN_HEIGHT)
     screen.bgcolor('black')
     screen.tracer(0)
-    return screen
+    return screen, SCREEN_WIDTH, SCREEN_HEIGHT
 
 def setup_midline(screen):
     midline = Turtle()
