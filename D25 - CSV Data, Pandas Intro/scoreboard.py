@@ -8,7 +8,7 @@ TEXT_FONT = ("Courier", 16, "normal")
 TEXT_COLOR = "white"
 
 class Scoreboard(Turtle):
-    def __init__(self):
+    def __init__(self, map = 'US'):
         super().__init__()
         self.score = 0
         self.strikes = 3
@@ -16,14 +16,25 @@ class Scoreboard(Turtle):
         self.penup()
         self.goto(-220, 250)
         self.hideturtle()
-        self.display_heading_here()
+        if map == 'US':
+            self.display_heading_US()
+        elif map == 'IND':
+            self.display_heading_IND()
     
-    def display_heading_here(self):
+    def display_heading_US(self):
+        self.penup()
+        self.goto(0, 370)
+        self.color('black')
+        self.write("US States Game", align= 'center', font = HEADING_FONT)
+        self.write("You have 3 strikes, guess 50 states.",
+                   align = 'center', font = TEXT_FONT)
+    
+    def display_heading_IND(self):
         self.penup()
         self.goto(0, 250)
         self.color(HEADING_COLOR)
-        self.write("US States Game", align= 'center', font = HEADING_FONT)
-        self.write("You have 3 strikes, guess 50 states.",
+        self.write("India States Game", align= 'center', font = HEADING_FONT)
+        self.write("You have 3 strikes, guess 29 states.",
                    align = 'center', font = TEXT_FONT)
 
     def update_scoreboard(self):

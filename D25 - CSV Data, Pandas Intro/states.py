@@ -5,11 +5,11 @@ FONT = ("Arial", 8, "normal")
 
 class States(Turtle):
 
-    def __init__(self):
+    def __init__(self, dataPath = "D25 - CSV Data, Pandas Intro\\Data\\50_states.csv"):
         super().__init__()
         self.penup()
         self.font_style = FONT
-        self.states_df = pd.read_csv("D25 - CSV Data, Pandas Intro\\Data\\50_states.csv")
+        self.states_df = pd.read_csv(dataPath)
 
     def reveal_state(self, state_name):
         if state_name.title() in self.states_df["state"].to_list():

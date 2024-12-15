@@ -6,16 +6,16 @@ import time
 
 # Setting up the screen
 screen = Screen()
-screen.setup(width = 800, height = 600)
+screen.setup(width = 650, height = 800)
 screen.bgcolor("black")
-screen.title("US States Game")
-image = "D25 - CSV Data, Pandas Intro\\Data\\blank_states_img.gif"
+screen.title("India States Game")
+image = "D25 - CSV Data, Pandas Intro\\Data\\IndiaMap.gif"
 screen.addshape(image)
 shape(image)
 
-scoreboard = Scoreboard()
+scoreboard = Scoreboard(map = 'IND')
 
-state_cursor = States()
+state_cursor = States('D25 - CSV Data, Pandas Intro\Data\Indian_states.csv')
 
 score = 0
 strikes = 0

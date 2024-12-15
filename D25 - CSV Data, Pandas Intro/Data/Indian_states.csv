@@ -1,30 +1,30 @@
-State
-Andhra Pradesh
-Arunachal Pradesh
-Assam
-Bihar
-Chhattisgarh
-Goa
-Gujarat
-Haryana
-Himachal Pradesh
-Jammu and Kashmir
-Jharkhand
-Karnataka
-Kerala
-Madhya Pradesh
-Maharashtra
-Manipur
-Meghalaya
-Mizoram
-Nagaland
-Odisha
-Punjab
-Rajasthan
-Sikkim
-Tamil Nadu
-Telangana
-Tripura
-Uttar Pradesh
-Uttarakhand
-West Bengal
+state,x,y
+Andhra Pradesh,-100.0,-180.0
+Arunachal Pradesh,241.0,168.0
+Assam,162.0,105.0
+Bihar,35.0,74.0
+Chhattisgarh,-29.0,4.0
+Goa,-244.0,-176.0
+Gujarat,-262.0,4.0
+Haryana,-143.0,153.0
+Himachal Pradesh,-100.0,238.0
+Jammu And Kashmir,-158.0,306.0
+Jharkhand,38.0,20.0
+Karnataka,-176.0,-200.0
+Kerala,-169.0,-292.0
+Madhya Pradesh,-130.0,6.0
+Maharashtra,-185.0,-83.0
+Manipur,252.0,65.0
+Meghalaya,145.0,38.0
+Mizoram,238.0,5.0
+Nagaland,233.0,105.0
+Odisha,7.0,-54.0
+Punjab,-165.0,193.0
+Rajasthan,-225.0,88.0
+Sikkim,133.0,173.0
+Tamil Nadu,-117.0,-280.0
+Telangana,-105.0,-115.0
+Tripura,158.0,-29.0
+Uttar Pradesh,-61.0,89.0
+Uttarakhand,-70.0,170.0
+West Bengal,102.0,9.0
