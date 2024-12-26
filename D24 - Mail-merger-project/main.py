@@ -1,5 +1,3 @@
-#TODO: Create a letter using starting_letter.txt 
-
 PLACEHOLDER1 = '[name]'
 INPUT_CONTENTS_PATH = "D24 - Mail-merger-project/Input/"
 OUTPUT_CONTENTS_PATH = "D24 - Mail-merger-project/Output/"
