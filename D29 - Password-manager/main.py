@@ -1,5 +1,6 @@
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 from random import choice, shuffle
+import json
 def generate_password():
     small_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     capital_letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -27,17 +28,33 @@ def save_password():
     email_or_username = email_username_entry.get()
     password = password_entry.get()
 
+    new_data = {
+        website_name: {
+            "email": email_or_username,
+            "password": password
+        }
+    }
+
     if len(website_name) == 0 or len(email_or_username) == 0 or len(password) == 0:
         messagebox.showinfo(title = "Error", message = "Please don't leave any fields empty.")
         return
 
     is_ok = messagebox.askokcancel(title = "Confirmation", message = f"These are the details entered:\nWebsite: {website_name}\nEmail/Username: {email_or_username} \nPassword: {password} \nIs it ok to save?")
     if is_ok:
-        with open("D29 - Password-manager\\data.txt", "a") as file:
-            file.write(f"{website_name} | {email_or_username} | {password}\n")
-        website_entry.delete(0, "end")
-        password_entry.delete(0, "end")
-        messagebox.showinfo(title = "Password Saved", message = f"Password for {website_name} has been saved.")
+        try:
+            with open("D29 - Password-manager\\data.json", "r") as file:
+                # Read old data
+                data = json.load(file)
+                # Update old data with new data
+                data.update(new_data)
+        except FileNotFoundError:
+            data = new_data
+        
+        with open("D29 - Password-manager\\data.json", "w") as file:
+            json.dump(data, file, indent = 4)
+            website_entry.delete(0, "end")
+            password_entry.delete(0, "end")
+            messagebox.showinfo(title = "Password Saved", message = f"Password for {website_name} has been saved.")
 
 # ---------------------------- UI SETUP ------------------------------- #
 from tkinter import Tk, PhotoImage, Canvas, Label, Entry, Button, messagebox
