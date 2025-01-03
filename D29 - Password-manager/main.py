@@ -1,6 +1,22 @@
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
+# ---------------------------- IMPORTS ------------------------------- #
 from random import choice, shuffle
 import json
+from cryptography.fernet import Fernet
+import base64
+
+# ---------------------------- SECURITY (Not implemented) ------------------------------- #
+encryption_key = Fernet.generate_key()
+fernet = Fernet(encryption_key)
+
+def encrypt_password(password):
+    encrypted = fernet.encrypt(password.encode())  # Encrypt as bytes
+    return base64.urlsafe_b64encode(encrypted).decode()  # Convert to string
+
+def decrypt_password(encrypted_password):
+    encrypted_bytes = base64.urlsafe_b64decode(encrypted_password.encode())  # Decode to bytes
+    return fernet.decrypt(encrypted_bytes).decode()  # Decrypt to string
+
+# ---------------------------- GENERATE PASSWORD ------------------------------- #
 def generate_password():
     small_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     capital_letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -23,10 +39,11 @@ def generate_password():
         password_entry.clipboard_append(newGen_pass)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
-def save_password():
+def save_password(default = None):
     website_name = website_entry.get()
     email_or_username = email_username_entry.get()
     password = password_entry.get()
+    password_encrypted = encrypt_password(password)
 
     new_data = {
         website_name: {
@@ -55,6 +72,21 @@ def save_password():
             website_entry.delete(0, "end")
             password_entry.delete(0, "end")
             messagebox.showinfo(title = "Password Saved", message = f"Password for {website_name} has been saved.")
+
+# ---------------------------- FIND PASSWORD ------------------------------- #
+def find_password():
+    website_name = website_entry.get()
+    try:
+        with open("D29 - Password-manager\\data.json", "r") as file:
+            data = json.load(file)
+            email_or_username = data[website_name]["email"]
+            password = data[website_name]["password"]            
+            # password = decrypt_password(password)
+            messagebox.showinfo(title = website_name, message = f"Email/Username: {email_or_username}\nPassword: {password}")
+    except FileNotFoundError:
+        messagebox.showinfo(title = "Error", message = "No data file found.")
+    except KeyError:
+        messagebox.showinfo(title = "Error", message = f"No details for {website_name} exists.")
 
 # ---------------------------- UI SETUP ------------------------------- #
 from tkinter import Tk, PhotoImage, Canvas, Label, Entry, Button, messagebox
@@ -92,7 +124,7 @@ password_label.grid(row = 3, column = 0)
 
 # Entry fields:
 # website entry
-website_entry = Entry(width = 51)
+website_entry = Entry(width = 43)
 website_entry.grid(row = 1, column = 1, columnspan = 2, sticky='w')
 website_entry.focus()
 
@@ -102,11 +134,15 @@ email_username_entry.grid(row = 2, column = 1, columnspan = 2, sticky='w')
 email_username_entry.insert(0, "most_used_email@gmail.com")
 
 # Password entry
-password_entry = Entry(width = 32)
+password_entry = Entry(width = 32, show="*")    # Shows in password text...
 password_entry.grid(row = 3, column = 1, sticky='w')    
 
 
 # Buttons:
+# Search button
+search_button= Button(text = "Search", bg = TEXT2_COLOR, fg = 'black', command = find_password)
+search_button.grid(row = 1, column = 2, sticky='e')
+
 # Generate password button
 generate_password_button = Button(text = "Generate Password", bg = TEXT2_COLOR, fg = 'black', command = generate_password)
 generate_password_button.grid(row = 3, column = 2, sticky='w')
@@ -114,5 +150,6 @@ generate_password_button.grid(row = 3, column = 2, sticky='w')
 # Add button
 add_button = Button(text = "Add", width = 43, bg = TEXT2_COLOR, fg = 'black', command = save_password)
 add_button.grid(row = 4, column = 1, columnspan = 2, sticky='w')
+window.bind("<Return>", save_password)      # Also binded the enter key to the save function command.
 
 window.mainloop()
