@@ -145,6 +145,12 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+# Sensitive data
+data.json
+
+# Other files which shouldnt be tracked
+words_to_learn.csv
+
 # Pyre type checker
 .pyre/
 
