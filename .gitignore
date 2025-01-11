@@ -150,6 +150,8 @@ data.json
 
 # Other files which shouldnt be tracked
 words_to_learn.csv
+quotes.txt
+birthdays.csv
 
 # Pyre type checker
 .pyre/
