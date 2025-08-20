@@ -1,6 +1,12 @@
+#####################################################################
+# 
+# INCOMPLETE PROJECT! (Due to API changes)
+#
+#####################################################################
 import requests
 import os
 from dotenv import load_dotenv
+import openai
 
 load_dotenv()
 
@@ -11,24 +17,26 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 indianURL = "https://stock.indianapi.in/mutual_funds"
 headers = {"X-Api-Key": os.getenv("STOCK_API_KEY")}
-response = requests.get(indianURL, headers=headers)
-data = response.json()
 
-invested_funds_fetch = []
+# print(os.getenv("STOCK_API_KEY"))
+# response = requests.get(indianURL, headers=headers, verify=False)
+# data = response.json()
+# print(data)
+# invested_funds_fetch = []
 
-for category, fund_list in data.items():
-    for type in fund_list:
-        for fund in fund_list[type]:
-            if 'fund_name' in fund and fund['fund_name'] in INVESTED_FUNDS:
-                invested_funds_fetch.append(fund)
+# for category, fund_list in data.items():
+#     for type in fund_list:
+#         for fund in fund_list[type]:
+#             if 'fund_name' in fund and fund['fund_name'] in INVESTED_FUNDS:
+#                 invested_funds_fetch.append(fund)
 
-# for fund in nippon_funds:
-#     print(fund)
+# # for fund in nippon_funds:
+# #     print(fund)
 
-for fund in invested_funds_fetch:
-    if abs(fund['percentage_change']) > 0.25:
-        print(f"{fund['fund_name']} : {fund['percentage_change']}% is moving!")
-        print(f"Get News about {fund['fund_name']}")
+# for fund in invested_funds_fetch:
+#     if abs(fund['percentage_change']) > 0.25:
+#         print(f"{fund['fund_name']} : {fund['percentage_change']}% is moving!")
+#         print(f"Get News about {fund['fund_name']}")
 #TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
 
 #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
